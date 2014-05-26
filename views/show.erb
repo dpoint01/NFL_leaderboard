@@ -1,0 +1,66 @@
+<link rel="stylesheet" href="style.css">
+
+<h1 style= "font-family: Impact; color: MidnightBlue"> <%=@team%> </h1>
+
+<!-- DISPLAY APPRPRIATE LOGO-->
+
+<%if @team == "Patriots" %>
+  <img src="http://www.officialpsds.com/images/thumbs/New-England-Patriots-logo-psd56754.png" width="50px" height="50px"/>
+<%elsif @team == "Broncos" %>
+  <img src="http://media.thedenverchannel.com/photo/2012/09/28/MHL_Broncos-Logo_1348849403124_161792_ver1.0_320_240.jpg" width="50px" height="50px"/>
+<%elsif @team == "Steelers" %>
+  <img src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcRVQViBmbVGAqK9ZZMVsnN2sYQGDhpMLtjApZ6quhC_K-poJ0QZL4uwpfUr"width="50px" height="50px"/>
+<%elsif @team == "Colts"%>
+  <img src="http://houndsports.com/wp-content/uploads/2014/05/indianapolis-colts-logo.jpg" width="50px" height="50px"/>
+<%end%>
+
+<!-- DISPLAY APPROPRIATE VICTORIES AND LOSSES -->
+<strong style="color: SteelBlue; font-family: CenturyGothic">
+  <%if @team == "Patriots"%>
+    <p>Total Victories: <%=@pat_wins%></p>
+    <p>Total Losses: <%=@pat_losses%></p>
+    <p>Total Games: <%=@pat_games%></p>
+  <%elsif @team == "Broncos"%>
+    <p>Total Victories: <%=@bro_wins%></p>
+    <p>Total Losses: <%=@bro_losses%></p>
+    <p>Total Games: <%=@bro_games%></p>
+  <%elsif @team == "Steelers"%>
+    <p>Total Victories: <%=@ste_wins%></p>
+    <p>Total Losses: <%=@ste_losses%></p>
+    <p>Total Games: <%=@ste_games%></p>
+  <%elsif @team == "Colts"%>
+    <p>Total Victories: <%=@col_wins%></p>
+    <p>Total Losses: <%=@col_losses%></p>
+    <p>Total Games: <%=@col_games%></p>
+ <% end %>
+</strong>
+
+<!-- DISPLAY PAST GAMES -->
+
+<h3 style= "font-family: Impact; color: MidnightBlue"> Past Games </h3>
+
+
+<%@all_games.each do |game|%>
+  <%if game[:home_team] == @team%>
+    <p style="font-family: CenturyGothic"> <strong> <%=@team%> - <%=game[:away_team]%> </strong> : <em> <%=game[:home_score]%> - <%=game[:away_score]%> </em></p>
+  <%elsif game[:away_team] == @team%>
+    <p style="font-family: CenturyGothic"> <strong><%=game[:home_team]%> - <%=@team%> </strong> : <em> <%=game[:home_score]%> - <%=game[:away_score]%>  </em> </p>
+  <% end %>
+<% end %>
+
+<!--DISPLAY TEAM WEBSITE-->
+<%if @team == "Patriots"%>
+  <em style="font-family: CenturyGothic"> For more info visit : <a href="http://www.patriots.com/"> www.patriots.com</a> </em>
+<%elsif @team == "Broncos"%>
+  <em style="font-family: CenturyGothic">For more info visit: <a href="http://www.denverbroncos.com/"> www.denverbroncos.com </a></em>
+<%elsif @team == "Steelers"%>
+  <em style="font-family: CenturyGothic">For more info visit: <a href="http://www.steelers.com/"> www.steelers.com</a></em>
+<%elsif @team == "Colts"%>
+  <em style="font-family: CenturyGothic">For more info visit: <a href="http://www.colts.com/"> www.colts.com </a></em>
+<% end %>
+
+<!-- HOME BUTTON -->
+ <h3> <a href="<%="/leaderboard"%>"> <img src="http://detroitk12.org/content/wp-content/uploads/2013/10/nfl-logo.jpg" onmouseover="this.src='http://www.myfacewhen.net/uploads/218-funny-face.jpg'" onmouseout="this.src='http://detroitk12.org/content/wp-content/uploads/2013/10/nfl-logo.jpg'"width="50px" height="50px" style="margin-right:-10px"/> </a> </h3>
+
+
+
